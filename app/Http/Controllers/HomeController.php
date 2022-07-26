@@ -907,12 +907,12 @@ class HomeController extends Controller{
 
     public function tracciabilita(){
 
-       // lei inserisce l'id ordine lavoro ovver il prol e da li vuole vedere tutte le attività svolte su quel ol
-       // inserisce nella pagina l'ol e poi dopo fai questa query
-       // DB::SELECT('SELECT * FROM PROLAttivita WHERE Id_PRol = \''.$id_prol.'\'');
-       // suddiviso per attività , ti richiami tutti i colli sottostanti
-       // in xWpCollo dove IdOrdineLavoro = Id_prol e IdCodiceAttivita = id_prolattivita
-       // cosi hai tutti i colli divisi dall'ol
+        // lei inserisce l'id ordine lavoro ovver il prol e da li vuole vedere tutte le attività svolte su quel ol
+        // inserisce nella pagina l'ol e poi dopo fai questa query
+        // DB::SELECT('SELECT * FROM PROLAttivita WHERE Id_PRol = \''.$id_prol.'\'');
+        // suddiviso per attività , ti richiami tutti i colli sottostanti
+        // in xWpCollo dove IdOrdineLavoro = Id_prol e IdCodiceAttivita = id_prolattivita
+        // cosi hai tutti i colli divisi dall'ol
 
         return View::make('backend.tracciabilita'/*,compact('attivita','Cd_Attivita')*/);
     }
@@ -1399,55 +1399,55 @@ class HomeController extends Controller{
                             }
                         }
 
-/*
-                        $report = DB::select('SELECT Ud_Report,NoteReport from ReportAll where Tipo = \'ARCA_INDUSTRY\' and Nome = \'' . $report[0]->RI_COLLO . '\' Order by TimeIns desc');
+                        /*
+                                                $report = DB::select('SELECT Ud_Report,NoteReport from ReportAll where Tipo = \'ARCA_INDUSTRY\' and Nome = \'' . $report[0]->RI_COLLO . '\' Order by TimeIns desc');
 
-                        if (sizeof($report) > 0) {
+                                                if (sizeof($report) > 0) {
 
-                            if(!file_exists('upload/collo_' . $dati['Nr_Collo'] . '.pdf')) {
+                                                    if(!file_exists('upload/collo_' . $dati['Nr_Collo'] . '.pdf')) {
 
-                                $insert_stampa['Modulo'] = $report[0]->Ud_Report;
-                                $insert_stampa['Collo'] = $dati['Nr_Collo'];
-                                $insert_stampa['Pedana'] = '';
-                                $insert_stampa['Qualita'] = '';
-                                $insert_stampa['stampato'] = 0;
-                                $insert_stampa['nome_file'] = 'collo_' . $dati['Nr_Collo'] . '.pdf';
-                                DB::table('xStampeIndustry')->insert($insert_stampa);
-                                $kill_process = DB::Select('SELECT top 1 kill_process from xArcaIndustryConf')[0]->kill_process;
-                                if($kill_process == 1) {
-                                    exec('taskkill /f /im splwow64.exe');
-                                    exec('taskkill /f /im arcasql.exe');
-                                }
+                                                        $insert_stampa['Modulo'] = $report[0]->Ud_Report;
+                                                        $insert_stampa['Collo'] = $dati['Nr_Collo'];
+                                                        $insert_stampa['Pedana'] = '';
+                                                        $insert_stampa['Qualita'] = '';
+                                                        $insert_stampa['stampato'] = 0;
+                                                        $insert_stampa['nome_file'] = 'collo_' . $dati['Nr_Collo'] . '.pdf';
+                                                        DB::table('xStampeIndustry')->insert($insert_stampa);
+                                                        $kill_process = DB::Select('SELECT top 1 kill_process from xArcaIndustryConf')[0]->kill_process;
+                                                        if($kill_process == 1) {
+                                                            exec('taskkill /f /im splwow64.exe');
+                                                            exec('taskkill /f /im arcasql.exe');
+                                                        }
 
-                                exec('"C:\Program Files (x86)\Artel\ArcaEvolution\ArcaSql.exe" *Server=' . env('DB_HOST', 'forge') . '  *Ditta=' . env('DB_DATABASE', 'forge') . ' *LoginPrompt=3 *UserName=' . env('DB_USERNAME', 'forge') . ' *Password=' . env('DB_PASSWORD', 'forge') . ' *execute=C:\Program Files (x86)\Artel\ArcaEvolution\arcaindustry_all_packaging.prg');
-                                while(!file_exists('upload/collo_' . $dati['Nr_Collo'] . '.pdf')) sleep(1);
-
-
-                            }
+                                                        exec('"C:\Program Files (x86)\Artel\ArcaEvolution\ArcaSql.exe" *Server=' . env('DB_HOST', 'forge') . '  *Ditta=' . env('DB_DATABASE', 'forge') . ' *LoginPrompt=3 *UserName=' . env('DB_USERNAME', 'forge') . ' *Password=' . env('DB_PASSWORD', 'forge') . ' *execute=C:\Program Files (x86)\Artel\ArcaEvolution\arcaindustry_all_packaging.prg');
+                                                        while(!file_exists('upload/collo_' . $dati['Nr_Collo'] . '.pdf')) sleep(1);
 
 
-                            if ($report[0]->NoteReport != '') {
-                                list($base, $altezza) = explode(';', $report[0]->NoteReport);
-                                $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => [$base, $altezza], 'margin_left' => 0, 'margin_right' => 0, 'margin_top' => 0, 'margin_bottom' => 0, 'margin_header' => 0, 'margin_footer' => 0]); //use this customization
-                                $pagecount = $mpdf->setSourceFile('upload/collo_' . $dati['Nr_Collo'] . '.pdf');
-                                $tplId = $mpdf->importPage($pagecount);
-                                $mpdf->useTemplate($tplId);
-                                $mpdf->Output('upload/collo_' . $dati['Nr_Collo'] . '.pdf', 'F');
-                            }
-
-                            $nomi_colli = array();
-                            $dati['Copie'] = 1;
-                            while($dati['Copie'] > 0) {
-                                array_push($nomi_colli, 'collo_' . $dati['Nr_Collo']);
-                                $dati['Copie'] -= 1;
-                            }
-
-                            return Redirect::to('dettaglio_bolla/' . $id . '?stampa=' . implode(',',$nomi_colli));
+                                                    }
 
 
-                        } else {*/
-                            return Redirect::to('dettaglio_bolla/' . $id);
-                       // }
+                                                    if ($report[0]->NoteReport != '') {
+                                                        list($base, $altezza) = explode(';', $report[0]->NoteReport);
+                                                        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => [$base, $altezza], 'margin_left' => 0, 'margin_right' => 0, 'margin_top' => 0, 'margin_bottom' => 0, 'margin_header' => 0, 'margin_footer' => 0]); //use this customization
+                                                        $pagecount = $mpdf->setSourceFile('upload/collo_' . $dati['Nr_Collo'] . '.pdf');
+                                                        $tplId = $mpdf->importPage($pagecount);
+                                                        $mpdf->useTemplate($tplId);
+                                                        $mpdf->Output('upload/collo_' . $dati['Nr_Collo'] . '.pdf', 'F');
+                                                    }
+
+                                                    $nomi_colli = array();
+                                                    $dati['Copie'] = 1;
+                                                    while($dati['Copie'] > 0) {
+                                                        array_push($nomi_colli, 'collo_' . $dati['Nr_Collo']);
+                                                        $dati['Copie'] -= 1;
+                                                    }
+
+                                                    return Redirect::to('dettaglio_bolla/' . $id . '?stampa=' . implode(',',$nomi_colli));
+
+
+                                                } else {*/
+                        return Redirect::to('dettaglio_bolla/' . $id);
+                        // }
 
                     }
                 }
@@ -3155,7 +3155,7 @@ class HomeController extends Controller{
                             if(sizeof($articoli) > 0) {
                                 $articolo = $articoli[0];
                                 $articolo->UM = DB::select('SELECT * from ARARMisura Where Cd_AR = \''.$articolo->Cd_AR.'\'');
-                                $stampe_libere = DB::select('SELECT * from xWPReport where Libero = 1 and (Cd_AR = '.$articolo->Cd_AR.' or Cd_AR2 = '.$articolo->Cd_AR.' or Cd_AR3 = '.$articolo->Cd_AR.' or Cd_AR4= '.$articolo->Cd_AR.' or Cd_AR5 = '.$articolo->Cd_AR.')');
+                                $stampe_libere = DB::select('SELECT * from xWPReport where Libero = 1 and (Cd_AR = \''.$articolo->Cd_AR.'\' or Cd_AR2 = \''.$articolo->Cd_AR.'\' or Cd_AR3 = \''.$articolo->Cd_AR.'\' or Cd_AR4= \''.$articolo->Cd_AR.'\' or Cd_AR5 = \''.$articolo->Cd_AR.'\')');
 
 
                                 $mandrini = DB::select('SELECT * from AR Where Cd_AR IN (SELECT xMandrino from AR Where Cd_AR = \''.$articolo->Cd_AR.'\')');
