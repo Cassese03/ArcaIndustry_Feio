@@ -1000,7 +1000,7 @@ class HomeController extends Controller{
                                 Operatore: ' . $utente->Cd_Operatore . '<br>
                                 Messaggio: ' . nl2br($dati['Messaggio']);
 
-                        $mail->send();
+                        // $mail->send();
                     }
                 }
 
@@ -2958,7 +2958,7 @@ class HomeController extends Controller{
                                 Risorsa: ' . $risorsa . '<br>
                                 Operatore: ' . $utente->Cd_Operatore . '<br>
                                 Messaggio: ' . nl2br($dati['NotePrRLAttivita']);
-                    $mail->send();
+                    // $mail->send();
 
                     return Redirect::to('dettaglio_bolla/'.$id);
                 }
@@ -3160,17 +3160,17 @@ class HomeController extends Controller{
 
                                 $mandrini = DB::select('SELECT * from AR Where Cd_AR IN (SELECT xMandrino from AR Where Cd_AR = \''.$articolo->Cd_AR.'\')');
 
-                                $cliche = DB::select('SELECT Cd_AR,Descrizione,xCLnColori,xCLdesColori,xCd_MGUbicazione,xCLPiste from AR Where Cd_AR LIKE (Select xCd_CL from AR Where Cd_AR = \''.$articolo->Cd_AR.'\')');
+                                /*$cliche = DB::select('SELECT Cd_AR,Descrizione,xCLnColori,xCLdesColori,xCd_MGUbicazione,xCLPiste from AR Where Cd_AR LIKE (Select xCd_CL from AR Where Cd_AR = \''.$articolo->Cd_AR.'\')');
                                 if(sizeof($cliche) > 0){
                                     $cliche[0]->gomme = DB::select('SELECT Cd_AR from AR Where Cd_AR LIKE \''.$cliche[0]->Cd_AR.'.%\'');
-                                }
+                                }*/
 
                                 $contatori = DB::select('SELECT * from xContatore where Id_PrBlAttivita = '.$id.' order by Ts DESC');
 
                                 $titolo = 'Ordine '.$attivita_bolla->Id_PrOL.' | '.$utente->Cd_PRRisorsa;
                                 $operatori = DB::select('SELECT * from Operatore Where CD_Operatore IN (SELECT CD_Operatore from PRRisorsa_Operatore Where Cd_PRRIsorsa = \''.$utente->Cd_PRRisorsa.'\')');
-                                $operatori_montacliche = DB::select('SELECT * from Operatore Where CD_Operatore IN (SELECT CD_Operatore from PRRisorsa_Operatore Where Cd_PRRIsorsa = \'MONTACLICHE\')');
-                                return View::make('backend.dettaglio_bolla', compact('attivita_bolla', 'bolla','titolo','utente', 'risorse', 'ultima_rilevazione', 'stato_attuale', 'causali_scarto', 'causali_fermo', 'anomalie_fermo', 'operatori','articolo','ordine','cliche','attivita','mandrini','crea_pedana','operatori_montacliche','OLAttivita','pallet','stampe_libere','contatori'));
+                                // $operatori_montacliche = DB::select('SELECT * from Operatore Where CD_Operatore IN (SELECT CD_Operatore from PRRisorsa_Operatore Where Cd_PRRIsorsa = \'MONTACLICHE\')');
+                                return View::make('backend.dettaglio_bolla', compact('attivita_bolla', 'bolla','titolo','utente', 'risorse', 'ultima_rilevazione', 'stato_attuale', 'causali_scarto', 'causali_fermo', 'anomalie_fermo', 'operatori','articolo','ordine','attivita','mandrini','crea_pedana','OLAttivita','pallet','stampe_libere','contatori'));
 
                             }
                         }

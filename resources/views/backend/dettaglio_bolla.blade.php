@@ -207,14 +207,14 @@
                                             <input type="text" name="Rif_Nr_Collo_Ultimo"  value="<?php echo (sizeof($attivita_bolla->colli) > 0)?$attivita_bolla->colli[0]->Rif_Nr_Collo:'' ?>" class="form-control" disabled>
                                         </div>
 
-                                        <?php if(sizeof($attivita) > 0 &&  $attivita[0]->Cd_PrAttivita == 'ACCOPPIAMENTO'){ ?>
+                                        <?php /*if(sizeof($attivita) > 0 &&  $attivita[0]->Cd_PrAttivita == 'ACCOPPIAMENTO'){ ?>
 
                                         <div class="col-md-6">
                                             <label>Bobina Madre 2</label>
                                             <input type="text" name="Rif_Nr_Collo2_Ultimo"  value="<?php echo (sizeof($attivita_bolla->colli) > 0)?$attivita_bolla->colli[0]->Rif_Nr_Collo2:'' ?>" class="form-control" disabled>
                                         </div>
 
-                                        <?php } ?>
+                                        <?php } */?>
 
                                     </div>
                                     <div class="clearfix" style="margin-bottom:10px;"></div>
@@ -309,8 +309,8 @@
                                                 <li class="nav-item"><a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#tab3" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Pedane  (<?php echo sizeof($attivita_bolla->pedane) ?>)</a></li>
                                                 <li class="nav-item"><a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#tab4" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Materiale</a></li>
                                                 <li class="nav-item"><a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#tab5" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Segnalazioni (<?php echo sizeof($attivita_bolla->segnalazioni) ?>)</a></li>
-                                                <li class="nav-item"><a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#tab6" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Clichè (<?php echo sizeof($attivita_bolla->cliche) ?>)</a></li>
-                                                <li class="nav-item"><a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#tab7" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Moduli Qualit&agrave; (<?php echo sizeof($attivita_bolla->moduli_qualita) ?>)</a></li>
+                                                <!-- <li class="nav-item"><a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#tab6" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Clichè (<?php echo sizeof($attivita_bolla->cliche) ?>)</a></li>
+                                                --><li class="nav-item"><a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#tab7" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Moduli Qualit&agrave; (<?php echo sizeof($attivita_bolla->moduli_qualita) ?>)</a></li>
                                             </ul>
                                             <div class="tab-content" id="custom-content-below-tabContent">
                                                 <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
@@ -449,7 +449,7 @@
 
                                                 </div>
 
-
+                                                <?php /*
                                                 <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="custom-content-below-profile-tab" style="padding:10px;">
 
                                                     <div class="row">
@@ -503,7 +503,7 @@
                                                             <?php } ?>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> */?>
                                                 <div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
 
                                                     <a onclick="aggiungi_qualita()" class="btn btn-success" style="float:right;margin-top:10px;margin-bottom:10px;">Aggiungi</a>
